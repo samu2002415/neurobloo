@@ -1,0 +1,109 @@
+.reading-container {
+  background: linear-gradient(to bottom, #B2EBF2, #E1BEE7);
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  padding: 20px;
+}
+
+.reading-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.right-header-content {
+  display: flex;
+  flex-direction: row;
+  align-items: right;
+  gap: 30px;
+  justify-content: flex-end;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  align-items: right;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.nav-links a:hover {
+  color: #00ACC1;
+}
+
+.user-greeting {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 60px;
+
+
+  
+}
+
+.username {
+  color: #00ACC1;
+  font-weight: bold;
+  margin-left: 1px;
+ 
+   
+}
+
+.reading-main {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.reading-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.reading-instruction {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.letter-3d {
+  font-size: 150px;
+  font-weight: 900;
+  color: #ffca28;
+  margin-top: 60px;
+  text-shadow:
+    1px 1px #fbc02d,
+    2px 2px #f9a825,
+    3px 3px #f57f17,
+    4px 4px #ef6c00;
+  display: inline-block;
+  transform: rotateX(15deg) rotateY(15deg);
+  perspective: 500px;
+}
+
+
+.ar-button {
+  padding: 10px 30px;
+  background: linear-gradient(to right, #64b5f6, #9575cd);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin-bottom: 80px;
+}
+
+.ar-button:hover {
+  transform: scale(1.05);
+   margin-bottom: 80px;
+}

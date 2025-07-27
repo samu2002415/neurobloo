@@ -1,0 +1,104 @@
+/* Updated CSS to place greeting and avatar on first line, navigation bar below */
+
+.learning-container {
+  background: linear-gradient(to bottom, #aee1f9, #fbc2eb);
+  min-height: 100vh;
+  padding: 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.learning-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 30px;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.user-greeting {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.username {
+  color: #0072ff;
+  margin-left: 5px;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.learning-nav {
+  display: flex;
+  gap: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  justify-content: flex-end;
+}
+
+.learning-nav a {
+  text-decoration: none;
+  color: #333;
+}
+
+.learning-nav a:hover {
+  color: #00ACC1;
+}
+
+.question-text {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000;
+  margin: 100px 0;
+}
+
+.module-section {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.module-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.module-card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  object-fit: contain;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  background: #e0ecff;
+}
+
+.module-btn {
+  margin-top: 15px;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(to right, #64b5f6, #9575cd);
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.module-btn:hover {
+  background: linear-gradient(to right, #42a5f5, #7e57c2);
+}
