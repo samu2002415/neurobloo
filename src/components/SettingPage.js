@@ -7,7 +7,7 @@ function SettingPage({ username }) {
   const [theme, setTheme] = useState('light');
   const [message, setMessage] = useState('');
 
-  // ✅ Fetch current settings
+  // Fetch current settings
   useEffect(() => {
     fetch(`http://localhost:5000/api/settings/${username}`)
       .then(res => res.json())

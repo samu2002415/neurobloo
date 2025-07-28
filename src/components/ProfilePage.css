@@ -34,13 +34,6 @@
   color: #2196f3;
 }
 
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-}
-
 .nav-links {
   display: flex;
   justify-content: flex-end;
@@ -70,24 +63,60 @@
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   text-align: center;
-  width: 300px;
+  width: 350px;
 }
 
 .profile-avatar {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
   border-radius: 50%;
   margin-bottom: 20px;
   border: 3px solid #64b5f6;
 }
 
-.edit-btn {
+/* Avatar upload section */
+.profile-card input[type="file"] {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Password change */
+.password-section {
   margin-top: 20px;
-  padding: 10px 20px;
+  text-align: left;
+}
+
+.password-section label {
+  font-weight: 500;
+  color: #555;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.password-section input {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.password-section button {
   background: linear-gradient(to right, #64b5f6, #9575cd);
-  border: none;
-  border-radius: 20px;
   color: white;
+  border: none;
+  padding: 10px 20px;
   font-weight: bold;
+  border-radius: 20px;
   cursor: pointer;
+  width: 100%;
+}
+
+/* Message */
+.status-message {
+  margin-top: 15px;
+  color: green;
+  font-weight: bold;
+  font-size: 14px;
 }

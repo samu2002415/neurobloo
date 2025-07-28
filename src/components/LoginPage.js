@@ -1,21 +1,40 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
-
 
 function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); 
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    navigate('/home', { state: { username } });
-    
-    console.log('Username:', username);
-    console.log('Password:', password);
+    setLoading(true);
 
-    
+    try {
+      const response = await fetch('http://localhost:5000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert('Login successful!');
+        navigate('/home', { state: { username } });
+      } else {
+        alert('Invalid username or password.');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -44,9 +63,11 @@ function LoginPage() {
               className="input-field"
             />
             <p className="signup-text">
-              Do you have an account? <a href="/signup">Sign</a>
+              Don't have an account? <a href="/signup">Sign up</a>
             </p>
-            <button type="submit" className="login-btn">Login</button>
+            <button type="submit" className="login-btn" disabled={loading}>
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
           </form>
         </div>
         <div className="login-right">

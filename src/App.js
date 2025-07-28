@@ -10,6 +10,7 @@ import ReadingAdventurePage from'./components/ReadingAdventurePage';
 import MathAdventurePage from'./components/MathAdventurePage';
 import WritingAdventurePage from './components/WritingAdventurePage';
 import SettingPage from './components/SettingPage';
+import WritingLevel1 from './components/WritingLevel1';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/Math" element={<MathAdventurePage />} />
           <Route path="/Writing" element={<WritingAdventurePage />} />
             <Route path="/Setting" element={<SettingPage />} />
+            <Route path="/writing-level-1" element={<WritingLevel1 />} />
       </Routes>
     </Router>
   );

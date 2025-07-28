@@ -7,6 +7,7 @@ const PDFDocument = require('pdfkit');
 
 const handleLogin = require('./routes/handleLogin');
 const settingsRoute = require('./routes/Setting');
+const profileRoute = require('./routes/profile');
 
 const app = express();
 const PORT = 5000;
@@ -17,7 +18,7 @@ app.use(bodyParser.json());
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 's',           // ✅ Replace with your actual password
+  password: 's',           
   database: 'neurobloom'
 });
 
@@ -28,9 +29,6 @@ db.connect(err => {
     console.log('Connected to MySQL DB');
   }
 });
-
-// ================== API Routes ==================
-
 // User Login Route
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
@@ -127,7 +125,8 @@ app.get('/api/progress/download-pdf/:username', (req, res) => {
 
     // Pipe the PDF into the response
     doc.pipe(res);
-
+    //setting 
+    app.use('/api/settings', settingsRoute);
     // PDF Content
     doc.fontSize(20).text('NeuroBloom - Progress Report', { align: 'center' });
     doc.moveDown();
@@ -152,10 +151,55 @@ app.get('/api/progress/download-pdf/:username', (req, res) => {
     doc.end(); // Finalize PDF
   });
 });
-// Settings API
-app.use('/api/setting', settingsRoute);
+// Get user profile
+app.get('/api/profile/:username', (req, res) => {
+  const { username } = req.params;
+
+  const query = 'SELECT username, email, user_type FROM users WHERE username = ?';
+  db.query(query, [username], (err, results) => {
+    if (err) {
+      console.error('Fetch profile error:', err);
+      return res.status(500).json({ success: false });
+    }
+
+    if (results.length > 0) {
+      res.json({ success: true, profile: results[0] });
+    } else {
+      res.status(404).json({ success: false, message: 'User not found' });
+    }
+  });
+});
+
+// Update user profile
+app.use('/api/profile', profileRoute);
+app.use('/uploads', express.static('uploads')); // to serve avatar images
+app.put('/api/profile/update-password/:username', async (req, res) => {
+  const { username } = req.params;
+  const { password } = req.body;
+
+  if (!password) {
+    return res.status(400).json({ success: false, message: 'Password is required' });
+  }
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10); // Hash new password
+
+    const sql = 'UPDATE users SET password = ? WHERE username = ?';
+    db.query(sql, [hashedPassword, username], (err, result) => {
+      if (err) {
+        console.error('Error updating password:', err);
+        return res.status(500).json({ success: false, message: 'Error updating password' });
+      }
+
+      res.json({ success: true, message: 'Password updated successfully' });
+    });
+  } catch (error) {
+    console.error('Bcrypt error:', error);
+    res.status(500).json({ success: false, message: 'Encryption error' });
+  }
+});
 
 // Server start
 app.listen(PORT, () => {
-  console.log(`🚀 Backend server running on http://localhost:${PORT}`);
+  console.log(`Backend server running on http://localhost:${PORT}`);
 });
