@@ -30,19 +30,19 @@ function MathAdventurePage() {
 
       <div className="math-levels">
         <div className="level-card">
-          <img src="/assets/math1.png" alt="Level 1" />
+          <img src="/assets/math1.png" alt="Previous" />
           <p>Level 1</p>
         </div>
         <div className="math-3d-card">
   <span>(2 + 1 = ?)</span>
 </div>
         <div className="level-card">
-          <img src="/assets/math1.png" alt="Level 2" />
+          <img src="/assets/math1.png" alt="Next" />
           <p>Level 2</p>
         </div>
       </div>
 
-      <button className="math-btn">Start AR Learning</button>
+      <button className="math-btn">Today Learning</button>
     </div>
   );
 }
