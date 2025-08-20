@@ -4,7 +4,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 
 function CatModel() {
-  const gltf = useGLTF('/models/dog.glb');
+  const gltf = useGLTF('/models/cat.glb');
   return <primitive object={gltf.scene} scale={2} />;
 }
 

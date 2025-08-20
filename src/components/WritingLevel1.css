@@ -1,0 +1,110 @@
+.writing-container {
+  background: linear-gradient(to bottom, #ffecd2, #fcb69f);
+  min-height: 90vh;
+  font-family: 'Poppins', sans-serif;
+  padding: 20px;
+}
+
+.writing-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ff7043;
+}
+
+.writing-main {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.writing-title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #4e342e;
+}
+
+.instruction {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 15px 0;
+  padding: 10px 15px;
+  background: #fff3e0;
+  border-radius: 12px;
+  display: inline-block;
+  color: #6d4c41;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.feedback {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.feedback:empty {
+  display: none;
+}
+
+.feedback:contains("✅") {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.feedback:contains("❌") {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.feedback:contains("🎤") {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.ar-button,
+.retry-button,
+.next-button {
+  padding: 12px 30px;
+  margin: 20px 10px;
+  background: linear-gradient(to right, #64b5f6, #9575cd);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.ar-button:hover,
+.retry-button:hover,
+.next-button:hover {
+  transform: scale(1.05);
+}
+
+.retry-button {
+  background: linear-gradient(to right, #ff8a65, #f4511e);
+}
+
+.next-button {
+  background: linear-gradient(to right, #81c784, #388e3c);
+}
