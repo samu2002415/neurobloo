@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './WritingLevel1.css';
-import CatModelViewer from './CatModelViewer';
+import TruckModelViewer from './TruckModelViewer'; 
 
-function WritingLevel1() {
+function WritingLevel2() {
   const location = useLocation();
   const navigate = useNavigate();
   const username = location.state?.username || 'User';
@@ -14,14 +14,17 @@ function WritingLevel1() {
   const [showInstruction, setShowInstruction] = useState(false);
   const [levelComplete, setLevelComplete] = useState(false);
 
-  const goToNextLevel2 = () => {
-  navigate('/writing-level-2', { state: { username } });
+  const goToNextLevel3 = () => {
+  navigate('/writing-level-3', { state: { username } });
 };
 
   const instructionText =
-    "Trace the word C A T. Follow carefully and repeat after me: C... A... T... Cat!";
+    "Trace the word T R U C K. Follow carefully and repeat after me: T...R...U...C...K... TRUCK!";
 
-  // ✅ Text-to-Speech (TTS)
+  // Success sound
+  const successSound = new Audio('/assets/success.mp3');
+
+  // Text-to-Speech (TTS)
   const playInstruction = () => {
     const message = new SpeechSynthesisUtterance(instructionText);
     message.lang = "en-US";
@@ -35,13 +38,13 @@ function WritingLevel1() {
     };
     message.onend = () => {
       setIsSpeaking(false);
-      startSpeechRecognition(); // ✅ Start listening after speaking
+      startSpeechRecognition();
     };
 
     window.speechSynthesis.speak(message);
   };
 
-  // ✅ Speech-to-Text (STT)
+  // Speech-to-Text (STT)
   const startSpeechRecognition = () => {
     const SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -57,31 +60,38 @@ function WritingLevel1() {
 
     recognition.start();
     setIsListening(true);
-    setFeedback("🎤 Listening... Please say 'Cat'");
+    setFeedback("🎤 Listening... Please say 'Truck'");
 
     recognition.onresult = (event) => {
       setIsListening(false);
       const spokenText = event.results[0][0].transcript.toLowerCase();
       console.log("User said:", spokenText);
 
-      if (spokenText.includes("cat")) {
-        setFeedback("✅ Great job! You said 'Cat' correctly!");
+      if (spokenText.includes("sun")) {
+        setFeedback(" Awesome! You said 'Truck' correctly!");
         setLevelComplete(true);
+        successSound.play();
+
+        // Auto move to Level 3 after 4 seconds
+        setTimeout(() => {
+          navigate("/writing-level-3", { state: { username } });
+        }, 4000);
+
       } else {
-        setFeedback(`❌ You said '${spokenText}'. Try again!`);
+        setFeedback(` You said '${spokenText}'. Try again!`);
         setLevelComplete(false);
       }
     };
 
     recognition.onerror = (event) => {
       setIsListening(false);
-      setFeedback("⚠️ Error during recognition: " + event.error);
+      setFeedback("Error during recognition: " + event.error);
     };
   };
 
-  // ✅ Handle Next Level Navigation
+  // Manual navigation (backup)
   const goToNextLevel = () => {
-    navigate("/writing-level-2", { state: { username } });
+    navigate("/writing-level-3", { state: { username } });
   };
 
   return (
@@ -97,36 +107,35 @@ function WritingLevel1() {
 
       <main className="reading-main">
         <h2 className="reading-title">
-          Level 1 - Trace the Object: <strong>CAT</strong>
+          Level 2 - Trace the Object: <strong>TRUCK</strong>
         </h2>
 
-        {/* 3D Cat Model */}
-        <CatModelViewer />
+       
+        <TruckModelViewer />
 
-        {/* Start Button */}
+       
         {!isSpeaking && !isListening && !levelComplete && (
           <button className="ar-button" onClick={playInstruction}>
-            Start Level 1
+            Start Level 2
           </button>
         )}
 
-        {/*  Show instruction text */}
+       
         {showInstruction && <p className="instruction">{instructionText}</p>}
 
-        {/* Feedback */}
+        
         {feedback && <p className="feedback">{feedback}</p>}
 
-        {/* Try Again Button (fix: always shows when wrong) */}
-        {!levelComplete && feedback.includes("Try again") && (
+       
+       {!levelComplete && feedback.includes("Try again") && (
           <button className="retry-button" onClick={playInstruction}>
              Try Again
           </button>
         )}
 
-        {/*  Next Level Button */}
         {levelComplete && (
-          <button className="next-button" onClick={goToNextLevel2}>
-            Go to Level 2
+          <button className="next-button" onClick={goToNextLevel3}>
+             Go to Level 3
           </button>
         )}
       </main>
@@ -134,4 +143,4 @@ function WritingLevel1() {
   );
 }
 
-export default WritingLevel1;
+export default WritingLevel2;
