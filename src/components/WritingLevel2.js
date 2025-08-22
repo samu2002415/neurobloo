@@ -14,17 +14,13 @@ function WritingLevel2() {
   const [showInstruction, setShowInstruction] = useState(false);
   const [levelComplete, setLevelComplete] = useState(false);
 
-  const goToNextLevel3 = () => {
-  navigate('/writing-level-3', { state: { username } });
-};
-
   const instructionText =
-    "Trace the word T R U C K. Follow carefully and repeat after me: T...R...U...C...K... TRUCK!";
+    "Trace the word T R U C K. Follow carefully and repeat after me: T... R... U... C... K... TRUCK!";
 
-  // Success sound
-  const successSound = new Audio('/assets/success.mp3');
+  // ✅ Success sound
+  const successSound = new Audio('/assets/success.wav');
 
-  // Text-to-Speech (TTS)
+  // ✅ Text-to-Speech (TTS)
   const playInstruction = () => {
     const message = new SpeechSynthesisUtterance(instructionText);
     message.lang = "en-US";
@@ -44,7 +40,7 @@ function WritingLevel2() {
     window.speechSynthesis.speak(message);
   };
 
-  // Speech-to-Text (STT)
+  //  Speech-to-Text (STT)
   const startSpeechRecognition = () => {
     const SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -67,7 +63,7 @@ function WritingLevel2() {
       const spokenText = event.results[0][0].transcript.toLowerCase();
       console.log("User said:", spokenText);
 
-      if (spokenText.includes("sun")) {
+      if (spokenText.includes("truck")) {  
         setFeedback(" Awesome! You said 'Truck' correctly!");
         setLevelComplete(true);
         successSound.play();
@@ -78,7 +74,7 @@ function WritingLevel2() {
         }, 4000);
 
       } else {
-        setFeedback(` You said '${spokenText}'. Try again!`);
+        setFeedback(`You said '${spokenText}'. Try again!`);
         setLevelComplete(false);
       }
     };
@@ -89,8 +85,8 @@ function WritingLevel2() {
     };
   };
 
-  // Manual navigation (backup)
-  const goToNextLevel = () => {
+  
+  const goToNextLevel3 = () => {
     navigate("/writing-level-3", { state: { username } });
   };
 
@@ -110,7 +106,7 @@ function WritingLevel2() {
           Level 2 - Trace the Object: <strong>TRUCK</strong>
         </h2>
 
-       
+        {/* 3D Truck Model */}
         <TruckModelViewer />
 
        
@@ -120,19 +116,20 @@ function WritingLevel2() {
           </button>
         )}
 
-       
+        
         {showInstruction && <p className="instruction">{instructionText}</p>}
 
-        
+ 
         {feedback && <p className="feedback">{feedback}</p>}
 
        
-       {!levelComplete && feedback.includes("Try again") && (
+        {!levelComplete && feedback.includes("Try again") && (
           <button className="retry-button" onClick={playInstruction}>
-             Try Again
+            Try Again
           </button>
         )}
 
+        
         {levelComplete && (
           <button className="next-button" onClick={goToNextLevel3}>
              Go to Level 3

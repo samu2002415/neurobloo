@@ -21,7 +21,9 @@ function WritingLevel1() {
   const instructionText =
     "Trace the word C A T. Follow carefully and repeat after me: C... A... T... Cat!";
 
-  // ✅ Text-to-Speech (TTS)
+     const successSound = new Audio('/assets/success.wav');
+
+  //  Text-to-Speech (TTS)
   const playInstruction = () => {
     const message = new SpeechSynthesisUtterance(instructionText);
     message.lang = "en-US";
@@ -35,13 +37,13 @@ function WritingLevel1() {
     };
     message.onend = () => {
       setIsSpeaking(false);
-      startSpeechRecognition(); // ✅ Start listening after speaking
+      startSpeechRecognition(); //  Start listening after speaking
     };
 
     window.speechSynthesis.speak(message);
   };
 
-  // ✅ Speech-to-Text (STT)
+  //  Speech-to-Text (STT)
   const startSpeechRecognition = () => {
     const SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -65,10 +67,11 @@ function WritingLevel1() {
       console.log("User said:", spokenText);
 
       if (spokenText.includes("cat")) {
-        setFeedback("✅ Great job! You said 'Cat' correctly!");
+        setFeedback(" Great job! You said 'Cat' correctly!");
         setLevelComplete(true);
+          successSound.play();
       } else {
-        setFeedback(`❌ You said '${spokenText}'. Try again!`);
+        setFeedback(`You said '${spokenText}'. Try again!`);
         setLevelComplete(false);
       }
     };

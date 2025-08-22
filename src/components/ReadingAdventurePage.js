@@ -1,25 +1,30 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './ReadingAdventurePage.css';
 
 function ReadingAdventurePage() {
   const location = useLocation();
+  const navigate = useNavigate(); // ✅ added this
   const username = location.state?.username || 'User';
+
+  const handleStart = () => {
+    // ✅ navigate to ReadingPage1 and pass username
+    navigate('/reading-page1', { state: { username } });
+  };
 
   return (
     <div className="reading-container">
       <header className="reading-header">
         <div className="user-greeting">
-          {/* <span>Hello, <strong className="username">{username}</strong></span>*/}
+          {/* <span>Hello, <strong className="username">{username}</strong></span> */}
         </div>
         <div className="right-header-content">
           <nav className="nav-links">
-           <a href="/home">Home</a>
-          <a href="/profile">Profile</a>
-           <a href="/progress-tracker">Progress Tracker</a>
-          <a href="/Setting">Setting</a>
+            <a href="/home">Home</a>
+            <a href="/profile">Profile</a>
+            <a href="/progress-tracker">Progress Tracker</a>
+            <a href="/Setting">Setting</a>
           </nav>
-         
         </div>
       </header>
 
@@ -29,8 +34,10 @@ function ReadingAdventurePage() {
 
         <div className="letter-3d">A</div>
 
-
-        <button className="ar-button">Start AR Learning</button>
+        {/* ✅ Button triggers navigation */}
+        <button className="ar-button" onClick={handleStart}>
+          Start AR Learning
+        </button>
       </main>
     </div>
   );
