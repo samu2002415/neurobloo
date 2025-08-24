@@ -100,7 +100,8 @@
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.2s ease;
-  margin-bottom: 80px;
+  margin-bottom: 100px;
+  
 }
 
 .ar-button:hover {

@@ -2,13 +2,14 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './ReadingAdventurePage.css';
 
+
 function ReadingAdventurePage() {
   const location = useLocation();
-  const navigate = useNavigate(); // ✅ added this
+  const navigate = useNavigate(); 
   const username = location.state?.username || 'User';
 
   const handleStart = () => {
-    // ✅ navigate to ReadingPage1 and pass username
+  
     navigate('/reading-page1', { state: { username } });
   };
 
@@ -31,10 +32,7 @@ function ReadingAdventurePage() {
       <main className="reading-main">
         <h2 className="reading-title">Writing Adventure !</h2>
         <p className="reading-instruction">Trace the letter <strong>A</strong></p>
-
-        <div className="letter-3d">A</div>
-
-        {/* ✅ Button triggers navigation */}
+        
         <button className="ar-button" onClick={handleStart}>
           Start AR Learning
         </button>

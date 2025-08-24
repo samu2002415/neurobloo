@@ -3,16 +3,15 @@ import * as THREE from "three";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 
-function LetterAnimator() {
+function LetterAnimator({ letter }) {
   const mountRef = useRef(null);
 
   useEffect(() => {
-    
-    // Scene
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xf0f0f0);
+    if (!mountRef.current) return;
 
-    // Camera
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf8f9fa);
+
     const camera = new THREE.PerspectiveCamera(
       75,
       mountRef.current.clientWidth / mountRef.current.clientHeight,
@@ -21,43 +20,45 @@ function LetterAnimator() {
     );
     camera.position.z = 5;
 
-    // Renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
     mountRef.current.appendChild(renderer.domElement);
 
-    // Light
-    const light = new THREE.AmbientLight(0xffffff, 1);
+    const light = new THREE.AmbientLight(0xffffff, 1.2);
     scene.add(light);
 
-    // Load Font and Create Text
     const loader = new FontLoader();
+    let mesh;
+
     loader.load("/fonts/helvetiker_regular.typeface.json", (font) => {
-      const geometry = new TextGeometry("A", {
+      const geometry = new TextGeometry(letter, {
         font: font,
-        size: 1,
-        height: 0.2,
+        size: 2,
+        height: 0.4,
       });
 
-      const material = new THREE.MeshBasicMaterial({ color: 0x0000ff });
-      const mesh = new THREE.Mesh(geometry, material);
+      const material = new THREE.MeshPhongMaterial({ color: 0x0077ff });
+      mesh = new THREE.Mesh(geometry, material);
+      mesh.rotation.x = 0.3;
       scene.add(mesh);
+
+      const animate = () => {
+        requestAnimationFrame(animate);
+        if (mesh) mesh.rotation.y += 0.01;
+        renderer.render(scene, camera);
+      };
+      animate();
     });
 
-    // Animate
-    const animate = () => {
-      requestAnimationFrame(animate);
-      renderer.render(scene, camera);
-    };
-    animate();
-
-    // Cleanup
     return () => {
-      mountRef.current.removeChild(renderer.domElement);
+      if (mountRef.current && renderer.domElement) {
+        mountRef.current.removeChild(renderer.domElement);
+      }
+      renderer.dispose();
     };
-  }, []);
+  }, [letter]);
 
-  return <div ref={mountRef} style={{ width: "100%", height: "400px" }} />;
+  return <div ref={mountRef} style={{ width: "100%", height: "350px" }} />;
 }
 
 export default LetterAnimator;

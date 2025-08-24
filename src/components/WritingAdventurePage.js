@@ -31,7 +31,7 @@ function WritingAdventurePage() {
 
       <main className="reading-main">
         <h2 className="reading-title">Reading Adventure !</h2>
-        <p className="reading-instruction">Trace the Object  <strong>DOG</strong></p>
+        <p className="reading-instruction">Trace the Object  <strong>CAT</strong></p>
         <CatModelViewer />
           <div className="level-section">
           <div className="level-card" onClick={goToLevel1} style={{ cursor: 'pointer' }}>

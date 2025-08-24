@@ -1,0 +1,27 @@
+/* canvas.css */
+
+.tracing-canvas {
+  border: 3px dashed #4cafef;
+  border-radius: 20px;
+  background-color: #fff;
+  cursor: crosshair;
+
+  width: 100%;
+  height: 100%;
+  max-width: 350px;
+  max-height: 350px;
+
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease-in-out;
+}
+
+.tracing-canvas:hover {
+  transform: scale(1.02);
+  border-color: #3f51b5;
+}
+
+/* Optional: glowing effect while drawing */
+.tracing-canvas:active {
+  box-shadow: 0 0 25px rgba(63, 81, 181, 0.6);
+  border-color: #3f51b5;
+}

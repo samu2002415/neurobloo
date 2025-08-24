@@ -1,44 +1,77 @@
 .writing-container {
-  text-align: center;
-  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+  padding: 30px;
+  background: linear-gradient(to bottom, #B2EBF2, #E1BEE7);
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  margin: 20px auto;
 }
 
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.reading-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: left;
+  padding: 10px 20px;
+}
 .writing-content {
   display: flex;
+  gap: 30px;
+  width: 80%;
   justify-content: center;
-  gap: 20px;
-  margin: 20px;
+  margin-bottom: 20px;
 }
 
 .left-panel, .right-panel {
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  padding: 10px;
-  width: 400px;
-  height: 400px;
-}
-
-.footer {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-button {
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: none;
-  background: #5555ff;
-  color: white;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #3333aa;
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  padding: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .tracing-canvas {
-  background: #f9f9f9;
-  border: 2px dashed #ccc;
+  border: 2px dashed #0077ff;
+  border-radius: 12px;
+  background: #fafafa;
+  cursor: crosshair;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+}
+
+.btn {
+  padding: 10px 30px;
+  background: linear-gradient(to right, #64b5f6, #9575cd);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin-bottom: 80px;
+}
+
+.btn:hover {
+  padding: 10px 30px;
+  background: linear-gradient(to right, #64b5f6, #9575cd);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin-bottom: 80px;
 }
