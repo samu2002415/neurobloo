@@ -41,19 +41,21 @@
   border-radius: 12px;
   background: #fafafa;
   cursor: crosshair;
+  align-items: center;
 }
 
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 70%;
+  width: 90%;
+  
 }
 
 .btn {
   padding: 10px 30px;
-  background: linear-gradient(to right, #64b5f6, #9575cd);
-  color: #fff;
+  background: linear-gradient(to right, #135081, #9575cd);
+  color: linear-gradient(to right, #135081, #9575cd);
   border: none;
   border-radius: 20px;
   font-size: 16px;
@@ -73,5 +75,26 @@
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.2s ease;
-  margin-bottom: 80px;
+  margin-bottom: 50px;
 }
+.writing-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: px;
+}
+
+.left-panel, .right-panel {
+  position: relative;
+  background: #fff;
+  border: 1px solid #e6e6ee;
+  border-radius: 20px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  height: 320px;  
+  width: 320px;    /* anchor height for the 3D and canvas */
+  padding: 0;
+  overflow: hidden;
+  align-items: center;
+}
+
+/* if any floating overlay (old icon/tutorial) is present, kill it */
+.left-panel .overlay, .left-panel img[alt*="overlay"] { display: none !important; }

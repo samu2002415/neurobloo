@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './ReadingAdventurePage.css';
-
+import LettersModelViewer from './LettersModelViewer';
 
 function ReadingAdventurePage() {
   const location = useLocation();
@@ -10,7 +10,7 @@ function ReadingAdventurePage() {
 
   const handleStart = () => {
   
-    navigate('/reading-page1', { state: { username } });
+    navigate('/Reading-Page1', { state: { username } });
   };
 
   return (
@@ -28,11 +28,11 @@ function ReadingAdventurePage() {
           </nav>
         </div>
       </header>
-
+     
       <main className="reading-main">
         <h2 className="reading-title">Writing Adventure !</h2>
         <p className="reading-instruction">Trace the letter <strong>A</strong></p>
-        
+         <LettersModelViewer/>
         <button className="ar-button" onClick={handleStart}>
           Start AR Learning
         </button>
